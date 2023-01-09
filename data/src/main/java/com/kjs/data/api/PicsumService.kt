@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface PicsumService {
     @GET("v2/list")
-    fun getPicsumList(
+    suspend fun getPicsumList(
         @Query("page") page: Int
     ): Response<PicsumListResponse>
 

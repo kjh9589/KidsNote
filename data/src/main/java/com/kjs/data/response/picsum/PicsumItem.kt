@@ -24,6 +24,7 @@ fun PicsumItem.toPicsumModel(): PicsumModel {
         id = id,
         author = author,
         imageUri = downloadUrl,
+        url = url,
         isLike = false
     )
 }
