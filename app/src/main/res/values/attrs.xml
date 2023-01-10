@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="inactiveRes" format="reference" />
+    <attr name="activeRes" format="reference" />
+    <!--
+        isEnableInactive
+        초기값 Inactive 상태에서 disable 처리까지 해야하는지에 대한 여부
+    -->
+    <declare-styleable name="StateResButtonViewAttrs">
+        <attr name="inactiveRes" />
+        <attr name="activeRes" />
+        <attr name="isEnableInactive" format="boolean" />
+    </declare-styleable>
+</resources>

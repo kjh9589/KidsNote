@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">KidsNote</string>
+    <string name="general_loading">LOADING</string>
+    <string name="general_detail_page">상세페이지</string>
+</resources>
