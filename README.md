@@ -23,6 +23,7 @@
 
 # 사용 기술
 
+* Kotlin
 * MVVM
 * Clean Architecture
 * Hilt
