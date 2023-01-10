@@ -1,6 +1,5 @@
 package com.kjs.kidsnote.presentation.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,11 +33,9 @@ class MainViewModel @Inject constructor(
         get() = _loading
 
     private var offset = 1
-    var lock = false
 
     fun getList() {
         viewModelScope.launch {
-            lock = true
             getPicsumImageListUseCase.invoke(offset).collectLatest { result ->
                 when (result) {
                     is CommonResult.Loading -> {
@@ -46,6 +43,7 @@ class MainViewModel @Inject constructor(
                     }
                     is CommonResult.Success -> {
                         if (result.data.isEmpty()) {
+                            _loading.value = false
                             return@collectLatest
                         }
 
@@ -63,7 +61,6 @@ class MainViewModel @Inject constructor(
                     }
                     is CommonResult.Failure -> {
                         _loading.value = false
-                        lock = false
                     }
                 }
             }
