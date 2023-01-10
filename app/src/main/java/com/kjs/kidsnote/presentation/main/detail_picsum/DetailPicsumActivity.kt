@@ -1,20 +1,14 @@
 package com.kjs.kidsnote.presentation.main.detail_picsum
 
-import android.graphics.Rect
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.kjs.kidsnote.R
 import com.kjs.kidsnote.databinding.ActivityDetailPicsumBinding
 import com.kjs.kidsnote.presentation.common.CommonActivity
 import com.kjs.kidsnote.presentation.main.detail_picsum.adapter.DetailPicsumAdapter
 import com.kjs.kidsnote.util.Constants
-import com.kjs.kidsnote.util.extention.getIntDp
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 

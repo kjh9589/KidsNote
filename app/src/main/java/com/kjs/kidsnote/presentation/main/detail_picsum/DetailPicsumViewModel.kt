@@ -84,6 +84,8 @@ class DetailPicsumViewModel @Inject constructor(
                     }
                     is CommonResult.Success -> {
                         if (result.data.isEmpty()) {
+                            _loading.value = false
+
                             return@collectLatest
                         }
 
@@ -118,6 +120,8 @@ class DetailPicsumViewModel @Inject constructor(
                     }
                     is CommonResult.Success -> {
                         if (result.data.isEmpty()) {
+                            _loading.value = false
+                            lock = false
                             return@collectLatest
                         }
 

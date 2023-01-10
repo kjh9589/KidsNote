@@ -20,10 +20,6 @@ class PicsumRepositoryImpl @Inject constructor(
             val result = dataSource.getPicsumImageList(offset)
 
             if (result.status == CommonResultState.SUCCESS) {
-                if (result.data!!.isEmpty()) {
-                    return@flow
-                }
-
                 emit(
                     CommonResult.Success(
                         result.data!!.map { it.toPicsumModel() }
