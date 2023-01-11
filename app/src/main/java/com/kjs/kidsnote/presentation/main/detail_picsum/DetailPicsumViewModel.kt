@@ -31,8 +31,7 @@ class DetailPicsumViewModel @Inject constructor(
     private var prevOffset = 0
     private var nextOffset = 0
     var isInit = false
-
-    var lock = false
+    private var isNextEmpty = false
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean>
@@ -43,7 +42,6 @@ class DetailPicsumViewModel @Inject constructor(
         nextOffset = offset
 
         viewModelScope.launch {
-            lock = true
             getPicsumImageListUseCase.invoke(offset).collectLatest { result ->
                 when (result) {
                     is CommonResult.Loading -> {
@@ -64,7 +62,6 @@ class DetailPicsumViewModel @Inject constructor(
                     }
                     is CommonResult.Failure -> {
                         _loading.value = false
-                        lock = false
                     }
                 }
             }
@@ -73,9 +70,9 @@ class DetailPicsumViewModel @Inject constructor(
 
     fun getPrevList() {
         if (prevOffset == 0) {
-            lock = false
             return
         }
+
         viewModelScope.launch {
             getPicsumImageListUseCase.invoke(prevOffset).collectLatest { result ->
                 when (result) {
@@ -104,7 +101,6 @@ class DetailPicsumViewModel @Inject constructor(
                     }
                     is CommonResult.Failure -> {
                         _loading.value = false
-                        lock = false
                     }
                 }
             }
@@ -112,6 +108,9 @@ class DetailPicsumViewModel @Inject constructor(
     }
 
     fun getNextList() {
+        if (isNextEmpty) {
+            return
+        }
         viewModelScope.launch {
             getPicsumImageListUseCase.invoke(nextOffset).collectLatest { result ->
                 when (result) {
@@ -120,8 +119,8 @@ class DetailPicsumViewModel @Inject constructor(
                     }
                     is CommonResult.Success -> {
                         if (result.data.isEmpty()) {
+                            isNextEmpty = true
                             _loading.value = false
-                            lock = false
                             return@collectLatest
                         }
 
@@ -140,7 +139,6 @@ class DetailPicsumViewModel @Inject constructor(
                     }
                     is CommonResult.Failure -> {
                         _loading.value = false
-                        lock = false
                     }
                 }
             }

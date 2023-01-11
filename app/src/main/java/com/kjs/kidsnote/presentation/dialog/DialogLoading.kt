@@ -28,7 +28,6 @@ class DialogLoading: DialogFragment() {
     ): View {
         mBinding = DialogLoadingBinding.inflate(inflater, container, false)
 
-        dialog?.setCancelable(false)
         dialog?.setCanceledOnTouchOutside(false)
 
         return binding.root

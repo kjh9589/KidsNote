@@ -15,6 +15,6 @@ class GetPicsumImageListUseCase @Inject constructor(
     @IoDispatcher dispatcher: CoroutineDispatcher
 ): FlowUseCase<Int, List<PicsumModel>>(dispatcher){
     override fun execute(parameter: Int): Flow<CommonResult<List<PicsumModel>>> {
-        return repository.getPicsumImageList(parameter).map { it }
+        return repository.getPicsumImageList(parameter)
     }
 }
