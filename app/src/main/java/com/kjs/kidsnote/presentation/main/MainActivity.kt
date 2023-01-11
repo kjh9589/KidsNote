@@ -73,7 +73,7 @@ class MainActivity : CommonActivity() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                if (!recyclerView.canScrollVertically(1)) {
+                if (!viewModel.lock && !recyclerView.canScrollVertically(1)) {
                     viewModel.getList()
                 }
             }
@@ -87,6 +87,8 @@ class MainActivity : CommonActivity() {
 
                 adapter.submitList(list) {
                     binding.recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
+                    hideLoadingDialog()
+                    viewModel.lock = false
                 }
             }
         }
