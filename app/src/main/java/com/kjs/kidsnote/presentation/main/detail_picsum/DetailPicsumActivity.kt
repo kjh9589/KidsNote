@@ -61,18 +61,12 @@ class DetailPicsumActivity : CommonActivity() {
 
         detailPicsumViewPager.apply {
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageScrolled(
-                    position: Int,
-                    positionOffset: Float,
-                    positionOffsetPixels: Int
-                ) {
-                    if (!viewModel.lock && position == 0) {
-                        viewModel.lock = true
+                override fun onPageSelected(position: Int) {
+                    if (position == 0) {
                         viewModel.getPrevList()
                     }
 
-                    if (!viewModel.lock && position == this@DetailPicsumActivity.adapter.itemCount - 1) {
-                        viewModel.lock = true
+                    if (position == this@DetailPicsumActivity.adapter.itemCount - 1) {
                         viewModel.getNextList()
                     }
                 }
@@ -99,7 +93,6 @@ class DetailPicsumActivity : CommonActivity() {
                         )
                         viewModel.isInit = true
                     }
-                    viewModel.lock = false
                 }
             }
         }

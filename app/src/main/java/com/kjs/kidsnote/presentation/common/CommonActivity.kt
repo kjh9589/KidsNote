@@ -18,6 +18,10 @@ open class CommonActivity: AppCompatActivity() {
     open fun bindViews() {}
 
     fun showLoadingDialog() {
+        if (dialogLoading != null) {
+            return
+        }
+
         dialogLoading = DialogLoading()
         dialogLoading?.show(
             supportFragmentManager, DialogLoading.TAG
